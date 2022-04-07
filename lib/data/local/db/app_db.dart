@@ -23,4 +23,30 @@ class AppDb extends _$AppDb {
 
   @override
   int get schemaVersion => 1;
+
+  //Get the List of employee
+  Future<List<EmployeeData>> getEmployees() async {
+    return await select(employee).get();
+  }
+
+  //READ a single employee
+  Future<EmployeeData> getEmployee(int id) async {
+    return await (select(employee)..where((tbl) => tbl.id.equals(id)))
+        .getSingle();
+  }
+
+  //UPDATE a single employee
+  Future<bool> updateEmployee(EmployeeCompanion entity) async {
+    return await update(employee).replace(entity);
+  }
+
+  //CREATE a single employee
+  Future<int> insertEmployee(EmployeeCompanion entity) async {
+    return await into(employee).insert(entity);
+  }
+
+  //DELETE a single employee
+  Future<int> deleteEmployee(int id) async {
+    return await (delete(employee)..where((tbl) => tbl.id.equals(id))).go();
+  }
 }
