@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:employee_book/data/local/db/app_db.dart';
 import 'package:flutter/material.dart';
 
@@ -55,15 +53,42 @@ class _HomeScreenState extends State<HomeScreen> {
               itemCount: employees.length,
               itemBuilder: (context, index) {
                 final employee = employees[index];
-                return Card(
-                  child: Column(
-                    children: [
-                      Text(employee.id.toString()),
-                      Text(employee.userName.toString()),
-                      Text(employee.firstName.toString()),
-                      Text(employee.lastName.toString()),
-                      Text(employee.dateOfBirth.toString()),
-                    ],
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/edit_employee',
+                        arguments: employee.id);
+                  },
+                  child: Card(
+                    color: Colors.white,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(32),
+                        bottomRight: Radius.circular(32),
+                      ),
+                      side: BorderSide(
+                        color: Colors.green,
+                        style: BorderStyle.solid,
+                        width: 1.2,
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(employee.id.toString(),
+                              style: const TextStyle(color: Colors.black)),
+                          Text(employee.userName.toString(),
+                              style: const TextStyle(color: Colors.black)),
+                          Text(employee.firstName.toString(),
+                              style: const TextStyle(color: Colors.black)),
+                          Text(employee.lastName.toString(),
+                              style: const TextStyle(color: Colors.black)),
+                          Text(employee.dateOfBirth.toString(),
+                              style: const TextStyle(color: Colors.black)),
+                        ],
+                      ),
+                    ),
                   ),
                 );
               },
