@@ -13,6 +13,7 @@ class AddEmployeeScreen extends StatefulWidget {
 }
 
 class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
+  final _formKey = GlobalKey<FormState>();
   late AppDb _db;
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _firstNameController = TextEditingController();
@@ -56,6 +57,10 @@ class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
+            Form(
+              key: _formKey,            
+              child: aula 19 - ,
+            ),
             CustomTextFormField(
                 controller: _userNameController, txtLabel: 'User Name'),
             const SizedBox(height: 8.0),
